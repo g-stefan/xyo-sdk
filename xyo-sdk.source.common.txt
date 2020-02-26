@@ -1,0 +1,8 @@
+#
+# Common
+#
+browser-automaton
+xyo-cloud-core
+xui
+xyo-cloud-xui
+xyo-cloud
