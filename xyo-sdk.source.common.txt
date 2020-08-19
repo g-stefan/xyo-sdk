@@ -1,6 +1,3 @@
 #
 # Common
 #
-browser-automaton
-xui
-xyo-cloud
