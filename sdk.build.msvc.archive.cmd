@@ -10,8 +10,10 @@ FOR /F "tokens=* USEBACKQ" %%F IN (`xyo-version --no-bump --get "--version-file=
 	SET VERSION=%%F
 )
 
-if exist archive/%PROJECT%-%VERSION%.%XYO_PLATFORM%.7z del /Q /F archive\%PROJECT%-%VERSION%.%XYO_PLATFORM%.7z
+set PROJECT_ARCHIVE=%PROJECT%-%VERSION%-%XYO_PLATFORM%
 
-move repository %PROJECT%-%VERSION%.%XYO_PLATFORM%
-%PROJECT%-%VERSION%.%XYO_PLATFORM%\bin\7zr a -mx9 -mmt4 -r -sse -w. -y -t7z archive/%PROJECT%-%VERSION%.%XYO_PLATFORM%.7z %PROJECT%-%VERSION%.%XYO_PLATFORM%
-move %PROJECT%-%VERSION%.%XYO_PLATFORM% repository
+if exist archive/%PROJECT_ARCHIVE%.7z del /Q /F archive\%PROJECT_ARCHIVE%.7z
+
+move repository %PROJECT_ARCHIVE%
+%PROJECT_ARCHIVE%\bin\7zr a -mx9 -mmt4 -r -sse -w. -y -t7z archive/%PROJECT_ARCHIVE%.7z %PROJECT_ARCHIVE%
+move %PROJECT_ARCHIVE% repository
