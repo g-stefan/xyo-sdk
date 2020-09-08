@@ -15,5 +15,5 @@ set PROJECT_ARCHIVE=%PROJECT%-%VERSION%-%XYO_PLATFORM%
 if exist archive/%PROJECT_ARCHIVE%.7z del /Q /F archive\%PROJECT_ARCHIVE%.7z
 
 move repository %PROJECT_ARCHIVE%
-%PROJECT_ARCHIVE%\bin\7zr a -mx9 -mmt4 -r -sse -w. -y -t7z archive/%PROJECT_ARCHIVE%.7z %PROJECT_ARCHIVE%
+%PROJECT_ARCHIVE%\bin\7zr a -mx9 -mmt4 -r- -sse -w. -y -t7z archive/%PROJECT_ARCHIVE%.7z %PROJECT_ARCHIVE%
 move %PROJECT_ARCHIVE% repository
