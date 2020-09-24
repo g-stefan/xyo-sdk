@@ -37,7 +37,7 @@ pushd source\%1
 call :getVersion %1
 if errorlevel 1 echo Error: %1 not found && popd && exit 1
 popd
-echo %1-%VERSION%>>%XYO_SDK_RELEASE%
+echo %1,%VERSION%>>%XYO_SDK_RELEASE%
 goto:eof
 :setReleaseVersionDefined
 
@@ -47,4 +47,3 @@ call :cmdX call :getVersion xyo-sdk
 set XYO_SDK_RELEASE=release\xyo-sdk-%VERSION%.csv
 
 for /F "eol=# tokens=1" %%i in (source\build-sdk\source\windows.txt) do call :setReleaseVersion %%i
-
