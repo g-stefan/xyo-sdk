@@ -3,6 +3,10 @@
 # http://unlicense.org/
 # Created by Grigore Stefan <g_stefan@yahoo.com>
 
+sudo apt-get -y install build-essential
+sudo apt-get -y install git
+sudo apt-get -y install cmake
+sudo apt-get -y install p7zip
 sudo apt-get -y install zlib1g-dev
 sudo apt-get -y install libbz2-dev
 sudo apt-get -y install libpng-dev

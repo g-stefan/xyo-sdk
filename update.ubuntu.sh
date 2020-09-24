@@ -22,21 +22,21 @@ download(){
 
 [ -d source ] || mkdir -p source
 
-{ <"xyo-sdk.source.ubuntu.txt" tr -d "\r"; echo; } | while read -r line; do
+{ <"util/common.txt" tr -d "\r"; echo; } | while read -r line; do
 	case "$line" in
 		\#*) continue ;;
 	esac
 	download $line
 done
 
-{ <"source/build-sdk/build-sdk.source.ubuntu.txt" tr -d "\r"; echo; } | while read -r line; do
+{ <"util/ubuntu.txt" tr -d "\r"; echo; } | while read -r line; do
 	case "$line" in
 		\#*) continue ;;
 	esac
 	download $line
 done
 
-{ <"xyo-sdk.source.common.txt" tr -d "\r"; echo; } | while read -r line; do
+{ <"source/build-sdk/source/ubuntu.txt" tr -d "\r"; echo; } | while read -r line; do
 	case "$line" in
 		\#*) continue ;;
 	esac

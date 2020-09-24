@@ -3,8 +3,6 @@ rem Public domain
 rem http://unlicense.org/
 rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
-if not "%XYO_PATH_SDK%"=="" goto run
-
 if exist "C:\Program Files\Git\bin\" goto step
 echo "Error: Git not found on "C:\Program Files\Git\bin"
 goto :eof
@@ -32,7 +30,6 @@ goto :eof
 :run
 if not exist source\ mkdir source
 
-for /F "eol=# tokens=1" %%i in (xyo-sdk.source.windows.txt) do call :download %%i
-for /F "eol=# tokens=1" %%i in (source\build-sdk\build-sdk.source.windows.txt) do call :download %%i
-for /F "eol=# tokens=1" %%i in (source\build-sdk\build-sdk.source.windows.optional.txt) do call :download %%i
-for /F "eol=# tokens=1" %%i in (xyo-sdk.source.common.txt) do call :download %%i
+for /F "eol=# tokens=1" %%i in (util\common.txt) do call :download %%i
+for /F "eol=# tokens=1" %%i in (util\windows.txt) do call :download %%i
+for /F "eol=# tokens=1" %%i in (source\build-sdk\source\windows.txt) do call :download %%i
