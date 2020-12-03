@@ -3,24 +3,28 @@
 # http://unlicense.org/
 # Created by Grigore Stefan <g_stefan@yahoo.com>
 
+if [ "$XYO_SDK_SOURCE" = "" ]; then
+	XYO_SDK_SOURCE=source
+fi
+
 download(){
 	if [ -n "$1" ]; then
 		echo "-> $1"
-		if [ -d "source/$1" ]; then
+		if [ -d "$XYO_SDK_SOURCE/$1" ]; then
 			POPD=$PWD
-			cd source/$1
+			cd $XYO_SDK_SOURCE/$1
 			git pull
 			cd $POPD
 		else
 			POPD=$PWD
-			cd source
+			cd $XYO_SDK_SOURCE
 			git clone --depth=1 https://github.com/g-stefan/$1
 			cd $POPD
 		fi
 	fi
 }
 
-[ -d source ] || mkdir -p source
+[ -d $XYO_SDK_SOURCE ] || mkdir -p $XYO_SDK_SOURCE
 
 { <"util/common.txt" tr -d "\r"; echo; } | while read -r line; do
 	case "$line" in
@@ -36,7 +40,7 @@ done
 	download $line
 done
 
-{ <"source/build-sdk/source/ubuntu.txt" tr -d "\r"; echo; } | while read -r line; do
+{ <"$XYO_SDK_SOURCE/build-sdk/source/ubuntu.txt" tr -d "\r"; echo; } | while read -r line; do
 	case "$line" in
 		\#*) continue ;;
 	esac

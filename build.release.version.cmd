@@ -3,6 +3,8 @@ rem Public domain
 rem http://unlicense.org/
 rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
+if "%XYO_SDK_SOURCE%" == "" set XYO_SDK_SOURCE=source
+
 goto cmdXDefined
 :cmdX
 %*
@@ -16,8 +18,8 @@ exit 1
 goto getVersionDefined
 :getVersion
 set PROJECT=%1
-if not exist source\%PROJECT%.version.ini goto getVersionVendor
-FOR /F "tokens=* USEBACKQ" %%F IN (`xyo-version --no-bump --get "--version-file=source\%PROJECT%.version.ini" %PROJECT%`) DO (
+if not exist %XYO_SDK_SOURCE%\%PROJECT%.version.ini goto getVersionVendor
+FOR /F "tokens=* USEBACKQ" %%F IN (`xyo-version --no-bump --get "--version-file=%XYO_SDK_SOURCE%\%PROJECT%.version.ini" %PROJECT%`) DO (
 	SET VERSION=%%F
 )
 goto:eof
@@ -33,7 +35,7 @@ goto:eof
 
 goto setReleaseVersionDefined
 :setReleaseVersion
-pushd source\%1
+pushd %XYO_SDK_SOURCE%\%1
 call :getVersion %1
 if errorlevel 1 echo Error: %1 not found && popd && exit 1
 popd
@@ -46,4 +48,4 @@ if not exist release mkdir release
 call :cmdX call :getVersion xyo-sdk
 set XYO_SDK_RELEASE=release\xyo-sdk-%VERSION%.csv
 
-for /F "eol=# tokens=1" %%i in (source\build-sdk\source\windows.txt) do call :setReleaseVersion %%i
+for /F "eol=# tokens=1" %%i in (%XYO_SDK_SOURCE%\build-sdk\source\windows.txt) do call :setReleaseVersion %%i
