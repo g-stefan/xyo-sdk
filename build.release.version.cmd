@@ -18,15 +18,15 @@ exit 1
 goto getVersionDefined
 :getVersion
 set PROJECT=%1
-if not exist %XYO_SDK_SOURCE%\%PROJECT%.version.ini goto getVersionVendor
-FOR /F "tokens=* USEBACKQ" %%F IN (`xyo-version --no-bump --get "--version-file=%XYO_SDK_SOURCE%\%PROJECT%.version.ini" %PROJECT%`) DO (
+if not exist source\%PROJECT%.version.ini goto getVersionVendor
+FOR /F "tokens=* USEBACKQ" %%F IN (`xyo-version --no-bump --get "--version-file=source\%PROJECT%.version.ini" %PROJECT%`) DO (
 	SET VERSION=%%F
 )
 goto:eof
 :getVersionVendor
 set PROJECT=%1
 SET PROJECT_VENDOR=%PROJECT:vendor-=%
-if not exist %PROJECT_VENDOR%.version.ini echo "Error - no version info" & exit 1
+if not exist %PROJECT_VENDOR%.version.ini echo Error - no version info - %1 & exit 1
 FOR /F "tokens=* USEBACKQ" %%F IN (`xyo-version --no-bump --get "--version-file=%PROJECT_VENDOR%.version.ini" %PROJECT_VENDOR%`) DO (
 	SET VERSION=%%F
 )
