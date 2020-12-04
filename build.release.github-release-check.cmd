@@ -5,7 +5,7 @@ rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-echo -^> git-release-check xyo-sdk
+echo -^> github-release-check xyo-sdk
 
 set PROJECT=xyo-sdk
 if not exist %PROJECT%.version.ini echo "Error - no version info" & goto cmdReleaseError
