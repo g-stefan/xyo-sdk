@@ -48,4 +48,6 @@ if not exist release mkdir release
 call :cmdX call :getVersion xyo-sdk
 set XYO_SDK_RELEASE=release\xyo-sdk-%VERSION%.csv
 
+type NUL > %XYO_SDK_RELEASE%
+
 for /F "eol=# tokens=1" %%i in (%XYO_SDK_SOURCE%\build-sdk\source\windows.txt) do call :setReleaseVersion %%i
