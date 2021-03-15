@@ -26,14 +26,14 @@ download(){
 
 [ -d $XYO_SDK_SOURCE ] || mkdir -p $XYO_SDK_SOURCE
 
-{ <"util/common.txt" tr -d "\r"; echo; } | while read -r line; do
+{ <"build/source/common.txt" tr -d "\r"; echo; } | while read -r line; do
 	case "$line" in
 		\#*) continue ;;
 	esac
 	download $line
 done
 
-{ <"util/ubuntu.txt" tr -d "\r"; echo; } | while read -r line; do
+{ <"build/source/ubuntu.txt" tr -d "\r"; echo; } | while read -r line; do
 	case "$line" in
 		\#*) continue ;;
 	esac

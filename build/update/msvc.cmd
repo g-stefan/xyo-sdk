@@ -32,6 +32,6 @@ goto :eof
 :run
 if not exist %XYO_SDK_SOURCE%\ mkdir %XYO_SDK_SOURCE%
 
-for /F "eol=# tokens=1" %%i in (util\common.txt) do call :download %%i
-for /F "eol=# tokens=1" %%i in (util\windows.txt) do call :download %%i
+for /F "eol=# tokens=1" %%i in (build\source\common.txt) do call :download %%i
+for /F "eol=# tokens=1" %%i in (build\source\windows.txt) do call :download %%i
 for /F "eol=# tokens=1" %%i in (%XYO_SDK_SOURCE%\build-sdk\source\windows.txt) do call :download %%i
