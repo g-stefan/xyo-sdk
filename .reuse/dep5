@@ -40,14 +40,6 @@ Files: README.md
 Copyright: 2020-2021 Grigore Stefan <g_stefan@yahoo.com>
 License: MIT
 
-Files: output/*
-Copyright: 2020-2021 Grigore Stefan <g_stefan@yahoo.com>
-License: MIT
-
-Files: source/*
-Copyright: 2020-2021 Grigore Stefan <g_stefan@yahoo.com>
-License: MIT
-
 Files: test/*
 Copyright: 2020-2021 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
