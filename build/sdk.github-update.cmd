@@ -5,7 +5,9 @@ rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-echo -^> github-update xyo-sdk
+call .\build\sdk.config.cmd
+
+echo - %BUILD_PROJECT% ^> github-update
 
 git fetch --prune --prune-tags
 git add --all

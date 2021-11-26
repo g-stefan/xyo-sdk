@@ -3,6 +3,10 @@ rem Public domain
 rem http://unlicense.org/
 rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
+call .\build\sdk.config.cmd
+
+echo - %BUILD_PROJECT% ^> version
+
 if "%XYO_SDK_SOURCE%" == "" set XYO_SDK_SOURCE=source
 
 goto cmdXDefined
