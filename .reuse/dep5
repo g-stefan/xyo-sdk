@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: XYO SDK
+Upstream-Name: Build SDK
 Upstream-Contact: Grigore Stefan <g_stefan@yahoo.com>
-Source: https://github.com/g-stefan/xyo-sdk
+Source: https://github.com/g-stefan/build-sdk
 License: MIT
 
 Files: .github/*
@@ -37,6 +37,14 @@ Copyright: 2020-2022 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
 
 Files: README.md
+Copyright: 2020-2022 Grigore Stefan <g_stefan@yahoo.com>
+License: MIT
+
+Files: output/*
+Copyright: 2020-2022 Grigore Stefan <g_stefan@yahoo.com>
+License: MIT
+
+Files: source/*
 Copyright: 2020-2022 Grigore Stefan <g_stefan@yahoo.com>
 License: MIT
 

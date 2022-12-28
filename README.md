@@ -1,9 +1,8 @@
 # XYO SDK
 
-Shell scripts to get/update/build SDK
+Scripts to manage SDK
 
 ## License
 
-Copyright (c) Grigore Stefan
-
+Copyright (c) 2022 Grigore Stefan
 Licensed under the [MIT](LICENSE) license.
