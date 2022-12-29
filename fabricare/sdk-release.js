@@ -8,12 +8,7 @@
 global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.json"));
 
 var platformList = [
-	"win32-msvc-2017",
-	"win64-msvc-2017",
-	"win32-msvc-2019",
-	"win64-msvc-2019",
-	"win32-msvc-2022",
-	"win64-msvc-2022",
+	"win64-msvc-2022"
 ];
 
 forEachProject(function(project) {
@@ -33,10 +28,6 @@ forEachProject(function(project) {
 global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/linux.json"));
 
 var platformList = [
-	"sys-mingw32",
-	"sys-mingw64",
-	"wsl-ubuntu-18.04",
-	"wsl-ubuntu-20.04",
 	"wsl-ubuntu-22.04"
 ];
 

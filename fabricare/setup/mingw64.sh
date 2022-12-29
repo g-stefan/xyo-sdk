@@ -13,3 +13,4 @@ pacman -S mingw64/mingw-w64-x86_64-gcc
 pacman -S mingw64/mingw-w64-x86_64-libpng
 pacman -S mingw64/mingw-w64-x86_64-openssl
 pacman -S p7zip
+pacman -S rsync
