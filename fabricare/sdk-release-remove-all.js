@@ -9,7 +9,7 @@ global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows
 
 forEachProject(function(project) {
 	runInPath("../" + project, function() {
-		Shell.removeDirRecursively("release");	
+		Shell.removeDirRecursively("release");
 	});
 });
 
@@ -19,6 +19,7 @@ global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/linux.j
 
 forEachProject(function(project) {
 	runInPath("../" + project, function() {
+		Console.writeLn("- "+project);
 		Shell.removeDirRecursively("release");
 	});
 });

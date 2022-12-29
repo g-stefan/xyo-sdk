@@ -3,42 +3,48 @@
 // SPDX-FileCopyrightText: 2022 Grigore Stefan <g_stefan@yahoo.com>
 // SPDX-License-Identifier: Unlicense
 
-// --- windows
+Shell.removeDirRecursively("temp");
+Shell.mkdirRecursivelyIfNotExists("temp");
 
-global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.json"));
+var path = Shell.getcwd();
 
-var platformList = [
-	"win64-msvc-2022"
-];
-
-forEachProject(function(project) {
-	runInPath("../" + project, function() {		
-		for(var platform of platformList) {
-			exitIf(Shell.system("fabricare --platform="+platform+" clean"));
-			exitIf(Shell.system("fabricare --platform="+platform+" default"));
-			exitIf(Shell.system("fabricare --platform="+platform+" install"));
-			exitIf(Shell.system("fabricare --platform="+platform+" release"));
-			exitIf(Shell.system("fabricare --platform="+platform+" clean"));
-		};
-	});
-});
-
-// --- linux
-
-global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/linux.json"));
-
-var platformList = [
-	"wsl-ubuntu-22.04"
-];
+var versionInfo = {};
 
 forEachProject(function(project) {
 	runInPath("../" + project, function() {
-		for(var platform of platformList) {
-			exitIf(Shell.system("fabricare --platform="+platform+" clean"));
-			exitIf(Shell.system("fabricare --platform="+platform+" default"));
-			exitIf(Shell.system("fabricare --platform="+platform+" install"));
-			exitIf(Shell.system("fabricare --platform="+platform+" release"));
-			exitIf(Shell.system("fabricare --platform="+platform+" clean"));
+		var cmd = "fabricare ";
+		cmd += "\"--release-path=" + path + "/temp\" ";
+		cmd += "\"--release-name=" + project + "\" ";
+		cmd += "release-version";
+		if (Shell.system(cmd)) {
+			throw ("release-version");
 		};
 	});
 });
+
+var release = {};
+
+var fileList = Shell.getFileList("temp/*.json");
+for (var file of fileList) {
+	var jsonContent = Shell.fileGetContents(file);
+	if (!Script.isNil(jsonContent)) {
+		var json = JSON.decode(jsonContent);
+		if (!Script.isNil(json)) {
+			if (Script.isNil(release[json.name])) {
+				release[json.name] = [];
+			};
+			var releaseInfo = {};
+			releaseInfo.project = json.project;
+			releaseInfo.version = json.version;
+			releaseInfo.release = json.release;
+			release[json.name][release[json.name].length] = releaseInfo;
+		};
+	};
+};
+
+// Console.writeLn(JSON.encodeWithIndentation(release));
+
+var version = getVersion();
+
+Shell.mkdirRecursivelyIfNotExists("release");
+Shell.filePutContents("release/" + Project.name + "-" + version + ".json", JSON.encodeWithIndentation(release));
