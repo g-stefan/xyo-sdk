@@ -33,9 +33,18 @@ for (var file of fileList) {
 			if (Script.isNil(release[json.name])) {
 				release[json.name] = [];
 			};
-			release[json.name][release[json.name].length] = json;
+			var releaseInfo = {};
+			releaseInfo.project = json.project;
+			releaseInfo.version = json.version;
+			releaseInfo.release = json.release;
+			release[json.name][release[json.name].length] = releaseInfo;
 		};
 	};
 };
 
-Console.writeLn(JSON.encodeWithIndentation(release));
+//Console.writeLn(JSON.encodeWithIndentation(release));
+
+var version = getVersion();
+
+Shell.mkdirRecursivelyIfNotExists("release");
+Shell.filePutContents("release/" + Project.name + "-" + version + ".json", JSON.encodeWithIndentation(release));
