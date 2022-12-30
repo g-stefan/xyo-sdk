@@ -30,14 +30,11 @@ for (var file of fileList) {
 	if (!Script.isNil(jsonContent)) {
 		var json = JSON.decode(jsonContent);
 		if (!Script.isNil(json)) {
-			if (Script.isNil(release[json.name])) {
-				release[json.name] = [];
-			};
 			var releaseInfo = {};
 			releaseInfo.project = json.project;
 			releaseInfo.version = json.version;
 			releaseInfo.release = json.release;
-			release[json.name][release[json.name].length] = releaseInfo;
+			release[json.name] = releaseInfo;
 		};
 	};
 };
