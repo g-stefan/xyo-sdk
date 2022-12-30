@@ -11,18 +11,17 @@ var platformList = [
 	"win64-msvc-2022"
 ];
 
-forEachProject(function(project) {
-	runInPath("../" + project, function() {
-		for (var platform of platformList) {
-
+for (var platform of platformList) {
+	forEachProject(function(project) {
+		runInPath("../" + project, function() {
 			exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " default"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " install"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " release"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
-		};
+		});
 	});
-});
+};
 
 // --- linux
 
@@ -32,15 +31,14 @@ var platformList = [
 	"wsl-ubuntu-22.04"
 ];
 
-forEachProject(function(project) {
-	runInPath("../" + project, function() {
-		for (var platform of platformList) {
-
+for (var platform of platformList) {
+	forEachProject(function(project) {
+		runInPath("../" + project, function() {
 			exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " default"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " install"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " release"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
-		};
+		});
 	});
-});
+};

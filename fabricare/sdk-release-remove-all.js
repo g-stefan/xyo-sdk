@@ -19,7 +19,7 @@ global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/linux.j
 
 forEachProject(function(project) {
 	runInPath("../" + project, function() {
-		Console.writeLn("- "+project);
+		Console.writeLn("- " + project);
 		Shell.removeDirRecursively("release");
 	});
 });
