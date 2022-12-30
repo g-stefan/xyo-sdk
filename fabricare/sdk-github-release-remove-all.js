@@ -4,4 +4,4 @@
 // SPDX-License-Identifier: Unlicense
 
 Project.githubRelease = true;
-Fabricare.include("github-update");
+Fabricare.include("github-release-remove-all");
