@@ -31,7 +31,6 @@ for (var file of fileList) {
 		var json = JSON.decode(jsonContent);
 		if (!Script.isNil(json)) {
 			var releaseInfo = {};
-			releaseInfo.project = json.project;
 			releaseInfo.version = json.version;
 			releaseInfo.release = json.release;
 			release[json.name] = releaseInfo;
