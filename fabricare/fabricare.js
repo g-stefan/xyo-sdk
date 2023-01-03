@@ -7,7 +7,7 @@ Script.include("fabricare/library.js");
 
 // ---
 
-Project.name = "xyo-sdk";
+Solution.name = "xyo-sdk";
 Fabricare.action = Application.getArgument(0, "default");
 
 if (includeLocal(Fabricare.action)) {

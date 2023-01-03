@@ -43,4 +43,4 @@ for (var file of fileList) {
 var version = getVersion();
 
 Shell.mkdirRecursivelyIfNotExists("release");
-Shell.filePutContents("release/" + Project.name + "-" + version + ".json", JSON.encodeWithIndentation(release));
+Shell.filePutContents("release/" + Solution.name + "-" + version + ".json", JSON.encodeWithIndentation(release));
