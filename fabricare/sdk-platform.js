@@ -8,17 +8,20 @@
 global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.json"));
 
 var platformList = [
-	"win32-msvc-2017",
-	"win64-msvc-2017",
-	"win32-msvc-2019",
-	"win64-msvc-2019",
 	"win32-msvc-2022",
-	"win64-msvc-2022",
+	"win64-msvc-2022"
 ];
 
 for (var platform of platformList) {
 	forEachProject(function(project) {
 		runInPath("../" + project, function() {
+			var json = JSON.decode(Fabricare.runInteractive("fabricare --platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
+			if (!Script.isNil(json)) {
+				if(json.exists){
+					Console.writeLn("- "+project+" release-exists");
+					return;
+				};
+			};
 			exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " default"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " install"));
@@ -36,14 +39,19 @@ global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/linux.j
 var platformList = [
 	"sys-mingw32",
 	"sys-mingw64",
-	"wsl-ubuntu-18.04",
-	"wsl-ubuntu-20.04",
 	"wsl-ubuntu-22.04"
 ];
 
 for (var platform of platformList) {
 	forEachProject(function(project) {
 		runInPath("../" + project, function() {
+			var json = JSON.decode(Fabricare.runInteractive("fabricare --platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
+			if (!Script.isNil(json)) {
+				if(json.exists){
+					Console.writeLn("- "+project+" release-exists");
+					return;
+				};
+			};
 			exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " default"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " install"));
