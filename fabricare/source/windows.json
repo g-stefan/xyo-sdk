@@ -36,6 +36,7 @@
 		"xyo-pixel32",
 		"png-to-icon",
 		"exec-cgi",
+		"grammar-compiler",
 		"quantum-script--buffer",
 		"quantum-script--example",
 		"quantum-script--application",

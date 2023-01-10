@@ -21,6 +21,7 @@
 		"xyo-pixel32",
 		"png-to-icon",
 		"exec-cgi",
+		"grammar-compiler",
 		"quantum-script",
 		"quantum-script--buffer",
 		"quantum-script--example",
