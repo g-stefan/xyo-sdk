@@ -17,11 +17,12 @@ for (var platform of platformList) {
 		runInPath("../" + project, function() {
 			var json = JSON.decode(Fabricare.runInteractive("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
 			if (!Script.isNil(json)) {
-				if(json.exists){
-					Console.writeLn("- "+project+" release-exists");
+				if (json.exists) {
+					Console.writeLn("- " + platform + ": " + project + " release exists");
 					return;
 				};
 			};
+			Console.writeLn("- " + platform + ": " + project + " release build");
 			exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " default"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " install"));
@@ -45,13 +46,14 @@ var platformList = [
 for (var platform of platformList) {
 	forEachProject(function(project) {
 		runInPath("../" + project, function() {
-			var json = JSON.decode(Fabricare.runInteractive("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists",false).split("#JSON#")[1]);
+			var json = JSON.decode(Fabricare.runInteractive("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists", false).split("#JSON#")[1]);
 			if (!Script.isNil(json)) {
-				if(json.exists){
-					Console.writeLn("- "+project+" release-exists");
+				if (json.exists) {
+					Console.writeLn("- " + platform + ": " + project + " release exists");
 					return;
 				};
 			};
+			Console.writeLn("- " + platform + ": " + project + " release build");
 			exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " default"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " install"));
