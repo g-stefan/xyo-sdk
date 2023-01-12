@@ -3,5 +3,5 @@
 // SPDX-FileCopyrightText: 2022-2023 Grigore Stefan <g_stefan@yahoo.com>
 // SPDX-License-Identifier: Unlicense
 
-Project.githubRelease = true;
+Solution.hasGithub = true;
 Fabricare.include("github-release-check");
