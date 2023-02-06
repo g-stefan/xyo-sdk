@@ -81,7 +81,9 @@
 		"xyo-generate-hook",
 		"dll-inject",
 		"dll-inject-sample",
-		"net-use"		
+		"net-use",
+		"xyo-win-service",
+		"mount-storage"
 	],
 	"05.vendor" : [
 		"vendor-civetweb",
