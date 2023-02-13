@@ -24,7 +24,7 @@ for (var platform of platformList) {
 			};
 			Console.writeLn("- " + platform + ": " + project + " release build");
 			exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
-			exitIf(Shell.system("fabricare --platform=" + platform + " default"));
+			exitIf(Shell.system("fabricare --platform=" + platform + " make"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " install"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " release"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " release-install"));
@@ -55,7 +55,8 @@ for (var platform of platformList) {
 			};
 			Console.writeLn("- " + platform + ": " + project + " release build");
 			exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
-			exitIf(Shell.system("fabricare --platform=" + platform + " default"));
+			exitIf(Shell.system("fabricare --platform=" + platform + " sync"));
+			exitIf(Shell.system("fabricare --platform=" + platform + " make"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " install"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " release"));
 			exitIf(Shell.system("fabricare --platform=" + platform + " release-install"));

@@ -105,36 +105,38 @@ for (var name in versionBump) {
 };
 
 if (Application.hasFlag("commit")) {
-	for (var name in versionBump) {
-		for (var info of versionBump[name]) {
-			if (!Script.isNil(info.make)) {
-				runInPath("../" + name, function() {
-					var cmd = "fabricare ";
-					cmd += "\"--dependency-project=" + info.project + "\" ";
-					cmd += "\"--dependency-make=" + info.make + "\" ";
-					cmd += "version-patch";
-					if (Shell.system(cmd)) {
-						throw ("dependency-version commit");
-					};
-				});
-			} else {
-				runInPath("../" + name, function() {
-					var cmd = "fabricare ";
-					cmd += "\"--dependency-project=" + info.project + "\" ";
-					cmd += "version-patch";
-					if (Shell.system(cmd)) {
-						throw ("dependency-version commit");
-					};
-				});
+	forEachProject(function(project) {
+		if (!Script.isNil(versionBump[project])) {
+			for (var info of versionBump[project]) {
+				if (!Script.isNil(info.make)) {
+					runInPath("../" + project, function() {
+						var cmd = "fabricare ";
+						cmd += "\"--dependency-project=" + info.project + "\" ";
+						cmd += "\"--dependency-make=" + info.make + "\" ";
+						cmd += "version-patch";
+						if (Shell.system(cmd)) {
+							throw ("dependency-version commit");
+						};
+					});
+				} else {
+					runInPath("../" + project, function() {
+						var cmd = "fabricare ";
+						cmd += "\"--dependency-project=" + info.project + "\" ";
+						cmd += "version-patch";
+						if (Shell.system(cmd)) {
+							throw ("dependency-version commit");
+						};
+					});
+				};
 			};
+			runInPath("../" + project, function() {
+				if (Shell.system("fabricare make")) {
+					throw ("make");
+				};
+				if (Shell.system("fabricare install")) {
+					throw ("install");
+				};
+			});
 		};
-		runInPath("../" + name, function() {
-			if (Shell.system("fabricare make")) {
-				throw ("make");
-			};
-			if (Shell.system("fabricare install")) {
-				throw ("install");
-			};
-		});
-	};
+	});
 };

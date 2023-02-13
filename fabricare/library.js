@@ -24,8 +24,7 @@ global.forEachProject = function(fn) {
 		};
 
 	} catch (e) {
-		Console.writeLn("Error: " + e);
-		exit(1);
+		exit(1, e.message);
 	};
 };
 
