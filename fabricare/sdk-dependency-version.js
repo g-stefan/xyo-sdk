@@ -25,6 +25,7 @@ if (useNoRelease) {
 			noRelease[project] = true;
 		});
 	});
+
 };
 
 var path = Shell.getcwd();
@@ -111,7 +112,7 @@ for (var scan in dependency) {
 
 // Console.writeLn(JSON.encodeWithIndentation(dependency));
 // Console.writeLn(JSON.encodeWithIndentation(currentVersion));
-//  Console.writeLn(JSON.encodeWithIndentation(versionBump));
+// Console.writeLn(JSON.encodeWithIndentation(versionBump));
 
 if (!hasVersionBump) {
 	Console.writeLn("* Nothing to do!");
