@@ -6,6 +6,27 @@
 Shell.removeDirRecursively("temp");
 Shell.mkdirRecursivelyIfNotExists("temp");
 
+var useNoRelease = Application.hasFlag("use-no-release");
+noRelease = {};
+
+if (useNoRelease) {
+	Console.writeLn("* using no-release");
+
+	var platform = "win64-msvc-2022";
+
+	forEachProject(function(project) {
+		runInPath("../" + project, function() {
+			var json = JSON.decode(Fabricare.runInteractive("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
+			if (!Script.isNil(json)) {
+				if (json.exists) {
+					return;
+				};
+			};
+			noRelease[project] = true;
+		});
+	});
+};
+
 var path = Shell.getcwd();
 
 var versionInfo = {};
@@ -71,6 +92,11 @@ for (var scan in dependency) {
 				doBump = true;
 				break;
 			};
+			if (useNoRelease) {
+				if (noRelease[version]) {
+					doBump = true;
+				};
+			};
 		};
 		if (doBump) {
 			if (Script.isNil(versionBump[info.name])) {
@@ -85,7 +111,7 @@ for (var scan in dependency) {
 
 // Console.writeLn(JSON.encodeWithIndentation(dependency));
 // Console.writeLn(JSON.encodeWithIndentation(currentVersion));
-// Console.writeLn(JSON.encodeWithIndentation(versionBump));
+//  Console.writeLn(JSON.encodeWithIndentation(versionBump));
 
 if (!hasVersionBump) {
 	Console.writeLn("* Nothing to do!");
@@ -93,40 +119,50 @@ if (!hasVersionBump) {
 };
 
 Console.writeLn("--- projects");
-for (var name in versionBump) {
-	Console.writeLn(name + ":");
-	for (var info of versionBump[name]) {
-		if (!Script.isNil(info.make)) {
-			Console.writeLn("\t- " + info.project + " [" + info.make + "]");
-		} else {
-			Console.writeLn("\t- " + info.name + ": " + info.project);
+forEachProject(function(project) {
+	if (!Script.isNil(versionBump[project])) {
+		Console.writeLn(project + ":");
+		for (var info of versionBump[project]) {
+			if (!Script.isNil(info.make)) {
+				Console.writeLn("\t- " + info.project + " [" + info.make + "]");
+			} else {
+				Console.writeLn("\t- " + info.name + ": " + info.project);
+			};
 		};
 	};
-};
+});
 
 if (Application.hasFlag("commit")) {
 	forEachProject(function(project) {
 		if (!Script.isNil(versionBump[project])) {
-			for (var info of versionBump[project]) {
-				if (!Script.isNil(info.make)) {
-					runInPath("../" + project, function() {
-						var cmd = "fabricare ";
-						cmd += "\"--dependency-project=" + info.project + "\" ";
-						cmd += "\"--dependency-make=" + info.make + "\" ";
-						cmd += "version-patch";
-						if (Shell.system(cmd)) {
-							throw ("dependency-version commit");
-						};
-					});
-				} else {
-					runInPath("../" + project, function() {
-						var cmd = "fabricare ";
-						cmd += "\"--dependency-project=" + info.project + "\" ";
-						cmd += "version-patch";
-						if (Shell.system(cmd)) {
-							throw ("dependency-version commit");
-						};
-					});
+			var doVersionPathBump = true;
+			if (useNoRelease) {
+				if (noRelease[project]) {
+					doVersionPathBump = false;
+				};
+			};
+			if (doVersionPathBump) {
+				for (var info of versionBump[project]) {
+					if (!Script.isNil(info.make)) {
+						runInPath("../" + project, function() {
+							var cmd = "fabricare ";
+							cmd += "\"--dependency-project=" + info.project + "\" ";
+							cmd += "\"--dependency-make=" + info.make + "\" ";
+							cmd += "version-patch";
+							if (Shell.system(cmd)) {
+								throw ("dependency-version commit");
+							};
+						});
+					} else {
+						runInPath("../" + project, function() {
+							var cmd = "fabricare ";
+							cmd += "\"--dependency-project=" + info.project + "\" ";
+							cmd += "version-patch";
+							if (Shell.system(cmd)) {
+								throw ("dependency-version commit");
+							};
+						});
+					};
 				};
 			};
 			runInPath("../" + project, function() {
