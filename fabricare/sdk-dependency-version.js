@@ -16,7 +16,7 @@ if (useNoRelease) {
 
 	forEachProject(function(project) {
 		runInPath("../" + project, function() {
-			var json = JSON.decode(Fabricare.runInteractive("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
+			var json = JSON.decode(ProcessInteractive.run("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
 			if (!Script.isNil(json)) {
 				if (json.exists) {
 					return;

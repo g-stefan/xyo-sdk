@@ -15,7 +15,7 @@ var platformList = [
 for (var platform of platformList) {
 	forEachProject(function(project) {
 		runInPath("../" + project, function() {
-			var json = JSON.decode(Fabricare.runInteractive("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
+			var json = JSON.decode(ProcessInteractive.run("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
 			if (Script.isNil(json)) {
 				Console.writeLn("- " + platform + ": " + project + " release not found!");
 				return;
@@ -45,7 +45,7 @@ var platformList = [
 for (var platform of platformList) {
 	forEachProject(function(project) {
 		runInPath("../" + project, function() {
-			var json = JSON.decode(Fabricare.runInteractive("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists", false).split("#JSON#")[1]);
+			var json = JSON.decode(ProcessInteractive.run("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists", false).split("#JSON#")[1]);
 			if (Script.isNil(json)) {
 				Console.writeLn("- " + platform + ": " + project + " release not found!");
 				return;
