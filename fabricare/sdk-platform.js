@@ -38,8 +38,6 @@ for (var platform of platformList) {
 global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/linux.json"));
 
 var platformList = [
-	"sys-mingw32",
-	"sys-mingw64",
 	"wsl-ubuntu-22.04"
 ];
 
