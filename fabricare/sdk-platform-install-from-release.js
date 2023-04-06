@@ -7,8 +7,7 @@
 
 global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.json"));
 
-var platformList = [
-	"win32-msvc-2022",
+var platformList = [	
 	"win64-msvc-2022"
 ];
 
