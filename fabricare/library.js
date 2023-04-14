@@ -15,7 +15,6 @@ if (OS.isLinux()) {
 };
 
 global.noVendor = Application.hasFlag("no-vendor");
-Console.writeLn("??:"+Application.hasFlag("no-vendor"));
 
 global.forEachProject = function(fn) {
 	try {
