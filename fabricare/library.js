@@ -14,11 +14,21 @@ if (OS.isLinux()) {
 	global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/linux.json"));
 };
 
+global.noVendor = Application.hasFlag("no-vendor");
+Console.writeLn("??:"+Application.hasFlag("no-vendor"));
+
 global.forEachProject = function(fn) {
 	try {
 
 		for (var projectCategory of global.projectList) {
 			for (var project of projectCategory) {
+
+				if (global.noVendor) {
+					if (project.indexOf("vendor-") >= 0) {
+						continue;
+					};
+				};
+
 				fn(project);
 			};
 		};

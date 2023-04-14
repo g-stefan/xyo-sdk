@@ -25,7 +25,6 @@ if (useNoRelease) {
 			noRelease[project] = true;
 		});
 	});
-
 };
 
 var path = Shell.getcwd();
