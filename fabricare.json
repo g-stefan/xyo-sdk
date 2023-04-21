@@ -1,0 +1,7 @@
+{
+	"solution": {
+		"name" : "xyo-sdk",
+		"type" : "xyo-cpp",
+		"hasGithub" : true
+	}
+}

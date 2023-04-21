@@ -3,21 +3,19 @@
 // SPDX-FileCopyrightText: 2022-2023 Grigore Stefan <g_stefan@yahoo.com>
 // SPDX-License-Identifier: Unlicense
 
-Script.include("fabricare/library.js");
+if (Application.hasFlag("sdk")) {
+	Fabricare.include("solution/xyo-cpp.library");
+	Fabricare.include("library");
 
-// ---
+	forEachProject(function(project) {
+		runInPath("../" + project, function() {
+			if (Shell.system("fabricare " + Fabricare.action)) {				
+				throw ("[ "+ project + "] " + Fabricare.action);
+			};
+		});
+	});
 
-Solution.name = "xyo-sdk";
-Fabricare.action = Application.getArgument(0, "default");
-
-if (includeLocal(Fabricare.action)) {
-	return;
+	return;	
 };
 
-forEachProject(function(project) {
-	runInPath("../" + project, function() {
-		if (Shell.system("fabricare " + Fabricare.action)) {
-			throw (Fabricare.action);
-		};
-	});
-});
+Fabricare.include("solution/" + Solution.type);

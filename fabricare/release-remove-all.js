@@ -3,5 +3,11 @@
 // SPDX-FileCopyrightText: 2022-2023 Grigore Stefan <g_stefan@yahoo.com>
 // SPDX-License-Identifier: Unlicense
 
-Solution.hasGithub = true;
-Fabricare.include("github-release-remove-all");
+Fabricare.include("library");
+
+forEachProject(function(project) {
+	runInPath("../" + project, function() {
+		Console.writeLn("- " + project);
+		Shell.removeDirRecursively("release");
+	});
+});

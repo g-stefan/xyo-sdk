@@ -3,6 +3,8 @@
 // SPDX-FileCopyrightText: 2022-2023 Grigore Stefan <g_stefan@yahoo.com>
 // SPDX-License-Identifier: Unlicense
 
+Fabricare.include("library");
+
 Shell.removeDirRecursively("temp");
 Shell.mkdirRecursivelyIfNotExists("temp");
 
