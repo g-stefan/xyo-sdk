@@ -15,6 +15,7 @@ if (OS.isLinux()) {
 };
 
 global.noVendor = Application.hasFlag("no-vendor");
+global.onlyVendor = Application.hasFlag("only-vendor");
 
 global.forEachProject = function(fn) {
 	try {
@@ -24,6 +25,11 @@ global.forEachProject = function(fn) {
 
 				if (global.noVendor) {
 					if (project.indexOf("vendor-") >= 0) {
+						continue;
+					};
+				};
+				if (global.onlyVendor) {
+					if (project.indexOf("vendor-") < 0) {
 						continue;
 					};
 				};
