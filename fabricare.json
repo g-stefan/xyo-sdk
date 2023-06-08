@@ -1,7 +1,6 @@
 {
 	"solution": {
 		"name" : "xyo-sdk",
-		"type" : "xyo-cpp",
-		"hasGithub" : true
+		"type" : "xyo-cpp"
 	}
 }

@@ -6,6 +6,9 @@
 Fabricare.include("library");
 
 var sourceHost = "https://github.com/g-stefan";
+if (Shell.hasEnv("XYO_SDK_SOURCE_GIT")) {
+	sourceHost = Shell.getenv("XYO_SDK_SOURCE_GIT");
+};
 
 forEachProject(function(project) {
 	messageAction(Fabricare.action + " - " + project);
