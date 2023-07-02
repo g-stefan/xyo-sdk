@@ -9,7 +9,16 @@ if (Application.hasFlag("sdk")) {
 
 	forEachProject(function(project) {
 		runInPath("../" + project, function() {
-			if (Shell.system("fabricare " + Fabricare.action)) {				
+			if(Fabricare.action=="default"){
+				if (Shell.system("fabricare make")) {
+					throw ("[ "+ project + "] " + "make");
+				};
+				if (Shell.system("fabricare install")) {
+					throw ("[ "+ project + "] " + "install");
+				};				
+				return;
+			};
+			if (Shell.system("fabricare " + Fabricare.action)) {
 				throw ("[ "+ project + "] " + Fabricare.action);
 			};
 		});
@@ -18,4 +27,4 @@ if (Application.hasFlag("sdk")) {
 	return;	
 };
 
-Fabricare.include("solution/" + Solution.type);
+Fabricare.processSolution();
