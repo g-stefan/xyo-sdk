@@ -83,7 +83,8 @@
 		"dll-inject-sample",
 		"net-use",
 		"xyo-win-service",
-		"mount-storage"
+		"mount-storage",
+		"proxy-forward"
 	],
 	"05.vendor" : [
 		"vendor-civetweb",
