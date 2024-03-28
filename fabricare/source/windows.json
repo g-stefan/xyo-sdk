@@ -1,5 +1,6 @@
 {
 	"01.cross-platform.1" : [
+		"xyo-platform",
 		"xyo-managed-memory",
 		"xyo-data-structures",
 		"xyo-encoding",
