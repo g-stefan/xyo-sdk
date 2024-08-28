@@ -7,15 +7,19 @@ Fabricare.include("library");
 
 // --- windows
 
-global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.json"));
-
 var platformList = [
-	"win64-msvc-2022"
+	"win64-msvc-2022",
+	"win64-msvc-2022.static"
 ];
 
 for (var platform of platformList) {
-	forEachProject(function(project) {
-		runInPath("../" + project, function() {
+	global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.json"));
+	if (platform == "win64-msvc-2022.static") {
+		global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.static.json"));
+	};
+
+	forEachProject(function (project) {
+		runInPath("../" + project, function () {
 			var json = JSON.decode(ProcessInteractive.run("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
 			if (Script.isNil(json)) {
 				Console.writeLn("- " + platform + ": " + project + " release not found!");
@@ -38,12 +42,13 @@ for (var platform of platformList) {
 global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/linux.json"));
 
 var platformList = [
-	"wsl-ubuntu-22.04"
+	"wsl-ubuntu-22.04",
+	"wsl-ubuntu-24.04"
 ];
 
 for (var platform of platformList) {
-	forEachProject(function(project) {
-		runInPath("../" + project, function() {
+	forEachProject(function (project) {
+		runInPath("../" + project, function () {
 			var json = JSON.decode(ProcessInteractive.run("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists", false).split("#JSON#")[1]);
 			if (Script.isNil(json)) {
 				Console.writeLn("- " + platform + ": " + project + " release not found!");

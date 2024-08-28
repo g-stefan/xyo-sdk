@@ -6,7 +6,12 @@
 global.projectList = {};
 
 if (OS.isWindows()) {
-	global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.json"));
+	if (Fabricare.isDynamic()) {
+		global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.json"));
+	};
+	if (Fabricare.isStatic()) {
+		global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.static.json"));
+	};
 };
 if (OS.isLinux()) {
 	global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/linux.json"));

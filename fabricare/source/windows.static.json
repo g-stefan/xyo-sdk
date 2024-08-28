@@ -99,11 +99,7 @@
 		"vendor-boost",
 		"vendor-pcre",
 		"vendor-expat",
-		"vendor-apr",
-		"vendor-apr-util",
-		"vendor-httpd",
-		"vendor-glfw",
-		"vendor-llvm"
+		"vendor-glfw"
 	],
 	"06.vendor" : [
 		"vendor-python",

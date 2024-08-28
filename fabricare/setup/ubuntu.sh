@@ -26,3 +26,6 @@ fi
 if [ "$RELEASE" = "22.04" ]; then
 	sudo apt-get -y install libssl-dev
 fi
+if [ "$RELEASE" = "24.04" ]; then
+	sudo apt-get -y install libssl-dev
+fi
