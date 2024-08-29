@@ -12,8 +12,8 @@ var path = Shell.getcwd();
 
 var versionInfo = {};
 
-forEachProject(function(project) {
-	runInPath("../" + project, function() {
+forEachProject(function (project) {
+	runInPath("../" + project, function () {
 		var cmd = "fabricare ";
 		cmd += "\"--release-path=" + path + "/temp\" ";
 		cmd += "\"--release-name=" + project + "\" ";
@@ -43,6 +43,10 @@ for (var file of fileList) {
 // Console.writeLn(JSON.encodeWithIndentation(release));
 
 var version = getVersion();
+
+if (Fabricare.isStatic()) {
+	version = version + ".static";
+};
 
 Shell.mkdirRecursivelyIfNotExists("release");
 Shell.filePutContents("release/" + Solution.name + "-" + version + ".json", JSON.encodeWithIndentation(release));
