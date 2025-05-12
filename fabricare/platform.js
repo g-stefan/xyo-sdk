@@ -24,6 +24,10 @@ for (var platform of platformList) {
 			if (!Script.isNil(json)) {
 				if (json.exists) {
 					Console.writeLn("- " + platform + ": " + project + " release exists");
+					exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
+					exitIf(Shell.system("fabricare --platform=" + platform + " install-from-release"));
+					exitIf(Shell.system("fabricare --platform=" + platform + " release-install"));
+					exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
 					return;
 				};
 			};
@@ -54,6 +58,10 @@ for (var platform of platformList) {
 			if (!Script.isNil(json)) {
 				if (json.exists) {
 					Console.writeLn("- " + platform + ": " + project + " release exists");
+					exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
+					exitIf(Shell.system("fabricare --platform=" + platform + " install-from-release"));
+					exitIf(Shell.system("fabricare --platform=" + platform + " release-install"));
+					exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
 					return;
 				};
 			};
