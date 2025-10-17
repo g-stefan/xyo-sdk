@@ -116,5 +116,9 @@
 		"vendor-opencv",
 		"vendor-tesseract",
 		"vendor-prlib"
+	],
+	"07.vendor" : [
+		"vendor-tcltk"
 	]
 }
+

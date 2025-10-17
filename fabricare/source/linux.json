@@ -1,5 +1,5 @@
 {
-	"01.cross-platform" : [		
+	"01.cross-platform" : [
 		"xyo-platform",
 		"xyo-managed-memory",
 		"xyo-data-structures",
