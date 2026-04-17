@@ -106,6 +106,7 @@
 		"vendor-llvm"
 	],
 	"06.vendor" : [
+		"vendor-tcltk",
 		"vendor-python",
 		"vendor-giflib",
 		"vendor-catch2",
@@ -116,9 +117,6 @@
 		"vendor-opencv",
 		"vendor-tesseract",
 		"vendor-prlib"
-	],
-	"07.vendor" : [
-		"vendor-tcltk"
 	]
 }
 
