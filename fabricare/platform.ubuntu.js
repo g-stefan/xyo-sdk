@@ -22,6 +22,7 @@ for (var platform of platformList) {
 				if (json.exists) {
 					Console.writeLn("- " + platform + ": " + project + " release exists");
 					exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
+					exitIf(Shell.system("fabricare --platform=" + platform + " sync"));
 					exitIf(Shell.system("fabricare --platform=" + platform + " install-from-release"));
 					exitIf(Shell.system("fabricare --platform=" + platform + " release-install"));
 					exitIf(Shell.system("fabricare --platform=" + platform + " clean"));
