@@ -1,5 +1,6 @@
 {
 	"solution": {
+		"namespace" : "xyo",
 		"name" : "xyo-sdk",
 		"type" : "xyo-cpp"
 	}

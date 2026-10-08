@@ -11,15 +11,15 @@ if (Application.hasFlag("sdk")) {
 		runInPath("../" + project, function() {
 			if(Fabricare.action=="default"){
 				if (Shell.system("fabricare make")) {
-					throw ("[ "+ project + "] " + "make");
+					throw ("[" + project + "] " + "make");
 				};
 				if (Shell.system("fabricare install")) {
-					throw ("[ "+ project + "] " + "install");
+					throw ("[" + project + "] " + "install");
 				};				
 				return;
 			};
 			if (Shell.system("fabricare " + Fabricare.action)) {
-				throw ("[ "+ project + "] " + Fabricare.action);
+				throw ("[" + project + "] " + Fabricare.action);
 			};
 		});
 	});

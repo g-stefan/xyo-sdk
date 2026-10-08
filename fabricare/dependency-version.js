@@ -9,20 +9,17 @@ Shell.removeDirRecursively("temp");
 Shell.mkdirRecursivelyIfNotExists("temp");
 
 var useNoRelease = Application.hasFlag("use-no-release");
-noRelease = {};
+var noRelease = {};
 
 if (useNoRelease) {
 	Console.writeLn("* using no-release");
 
-	var platform = "win64-msvc-2022";
+	var platform = getReleasePlatform();
 
 	forEachProject(function(project) {
 		runInPath("../" + project, function() {
-			var json = JSON.decode(ProcessInteractive.run("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
-			if (!Script.isNil(json)) {
-				if (json.exists) {
-					return;
-				};
+			if (hasRelease(platform)) {
+				return;
 			};
 			noRelease[project] = true;
 		});

@@ -50,8 +50,8 @@
 		"quantum-script--datetime",
 		"quantum-script--json",		
 		"quantum-script--file",
-		"quantum-script--shell",
 		"quantum-script--shellfind",
+		"quantum-script--shell",
 		"quantum-script--processinteractive",
 		"quantum-script--thread",		
 		"quantum-script--task",
@@ -102,8 +102,7 @@
 		"vendor-apr",
 		"vendor-apr-util",
 		"vendor-httpd",
-		"vendor-glfw",
-		"vendor-llvm"
+		"vendor-glfw"
 	],
 	"06.vendor" : [
 		"vendor-tcltk",

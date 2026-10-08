@@ -8,19 +8,19 @@ Fabricare.include("library");
 // --- windows
 
 var platformList = [
-	"win64-msvc-2022",
-	"win64-msvc-2022.static"
+	"win64-msvc-2026",
+	"win64-msvc-2026.static"
 ];
 
 for (var platform of platformList) {
 	global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.json"));
-	if (platform == "win64-msvc-2022.static") {
+	if (platform == "win64-msvc-2026.static") {
 		global.projectList = JSON.decode(Shell.fileGetContents("fabricare/source/windows.static.json"));
 	};
 
 	forEachProject(function (project) {
 		runInPath("../" + project, function () {
-			var json = JSON.decode(ProcessInteractive.run("fabricare --for-platform=" + platform + " --separate-data=#JSON# release-exists").split("#JSON#")[1]);
+			var json = getReleaseInfo(platform);
 			if (Script.isNil(json)) {
 				Console.writeLn("- " + platform + ": " + project + " release not found!");
 				return;

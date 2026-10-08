@@ -50,8 +50,8 @@
 		"quantum-script--datetime",
 		"quantum-script--json",		
 		"quantum-script--file",
-		"quantum-script--shell",
 		"quantum-script--shellfind",
+		"quantum-script--shell",
 		"quantum-script--processinteractive",
 		"quantum-script--thread",		
 		"quantum-script--task",
@@ -102,6 +102,7 @@
 		"vendor-glfw"
 	],
 	"06.vendor" : [
+		"vendor-tcltk",
 		"vendor-python",
 		"vendor-giflib",
 		"vendor-catch2",
