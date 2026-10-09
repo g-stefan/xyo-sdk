@@ -44,9 +44,5 @@ for (var file of fileList) {
 
 var version = getVersion();
 
-if (Fabricare.isStatic()) {
-	version = version + ".static";
-};
-
 Shell.mkdirRecursivelyIfNotExists("release");
-Shell.filePutContents("release/" + Solution.name + "-" + version + ".json", JSON.encodeWithIndentation(release));
+Shell.filePutContents("release/xyo." + Solution.name + ".v" + version + "." + Platform.name + ".json", JSON.encodeWithIndentation(release));
